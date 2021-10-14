@@ -1,0 +1,1 @@
+//# sourceMappingURL=MailgunAdapter.d.ts.map

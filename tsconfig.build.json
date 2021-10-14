@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./services",
+        "composite": true,
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "skipLibCheck": true,
+    },
+    "exclude": [
+        "services/**/tests/**",
+        "services/**/dist/**"
+    ],
+    "references": [
+        {
+            "path": "./services/email-gateway/tsconfig.build.json"
+        }
+    ]
+}

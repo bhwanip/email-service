@@ -1,0 +1,23 @@
+{
+  "name": "email-service",
+  "version": "1.0.0",
+  "description": "Email Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "sqlz:migrate": "npx sequelize db:migrate"
+  },
+  "keywords": [],
+  "author": "Puneet Bhojwani",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "rimraf": "3.0.2",
+    "sequelize-cli": "5.5.1"
+  }
+}

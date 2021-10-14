@@ -1,0 +1,1 @@
+{"version":3,"file":"SESService.d.ts","sourceRoot":"","sources":["../../src/emailService/SESService.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,WAAW,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAM5E,qBAAa,UAAW,YAAW,aAAa;IAC9C,OAAO,CAAC,SAAS,CAAC;;IASlB,WAAW,IAAI,aAAa;IAItB,SAAS,CAAC,KAAK,EAAE,WAAW,GAAG,OAAO,CAAC,OAAO,CAAC;CAsBtD"}

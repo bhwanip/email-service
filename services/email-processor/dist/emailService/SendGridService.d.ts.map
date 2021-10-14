@@ -1,0 +1,1 @@
+{"version":3,"file":"SendGridService.d.ts","sourceRoot":"","sources":["../../src/emailService/SendGridService.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,aAAa,EAAE,WAAW,EAAE,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAM5E,qBAAa,eAAgB,YAAW,aAAa;IACnD,OAAO,CAAC,cAAc,CAAgB;;IActC,WAAW,IAAI,aAAa;IAItB,SAAS,CAAC,KAAK,EAAE,WAAW,GAAG,OAAO,CAAC,OAAO,CAAC;CAwBtD"}
