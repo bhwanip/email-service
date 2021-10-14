@@ -27,6 +27,8 @@ coverage
 node_modules
 bower_components
 
+tsconfig.tsbuildinfo
+
 # Editors
 .idea
 *.iml
