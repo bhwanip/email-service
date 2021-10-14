@@ -1,1 +1,0 @@
-{"version":3,"file":"SendGridAdapter.d.ts","sourceRoot":"","sources":["../../../src/emailService/adapters/SendGridAdapter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,gBAAgB,EAAE,MAAM,kBAAkB,CAAC;AAWjE,qBAAa,eAAe;IAC1B,MAAM,CAAC,iBAAiB,CAAC,KAAK,EAAE,WAAW,GAAG,gBAAgB;CA2B/D"}

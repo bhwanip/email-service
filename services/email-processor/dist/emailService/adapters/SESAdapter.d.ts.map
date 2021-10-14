@@ -1,1 +1,0 @@
-{"version":3,"file":"SESAdapter.d.ts","sourceRoot":"","sources":["../../../src/emailService/adapters/SESAdapter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,WAAW,EAAE,MAAM,kBAAkB,CAAC;AAG5D,qBAAa,UAAU;IACrB,MAAM,CAAC,YAAY,CAAC,KAAK,EAAE,WAAW,GAAG,WAAW;CAkBrD"}
