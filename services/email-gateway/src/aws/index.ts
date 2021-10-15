@@ -2,7 +2,8 @@ import { SQS } from "aws-sdk";
 
 const queue = new SQS({
   apiVersion: "2012-11-05",
-  endpoint: "http://localhost:9324",
+  // endpoint: "http://localhost:9324",
+  endpoint: "http://email-service_aws_sqs_1:9324",
   region: "us-east-1",
 });
 
@@ -14,7 +15,7 @@ const queue = new SQS({
 export async function sendMessage(data: Object | string | number) {
   await queue
     .sendMessage({
-      QueueUrl: "http://localhost:9324/queue/default",
+      QueueUrl: "http://email-service_aws_sqs_1:9324/queue/default",
       MessageBody: JSON.stringify(data),
     })
     .promise();

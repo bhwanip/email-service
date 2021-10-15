@@ -7,7 +7,7 @@ type ProcessorFn = (input: IEmailInput) => Promise<boolean>;
 
 const queue = new SQS({
   apiVersion: "2012-11-05",
-  endpoint: "http://localhost:9324",
+  endpoint: "http://email-service_aws_sqs_1:9324",
   region: "us-east-1",
 });
 
@@ -18,7 +18,8 @@ const queue = new SQS({
 
 export async function receiveMessage(processorFn: ProcessorFn) {
   const params = {
-    QueueUrl: "http://localhost:9324/queue/default",
+    // QueueUrl: "http://localhost:9324/queue/default",
+    QueueUrl: "http://email-service_aws_sqs_1:9324/queue/default",
   };
 
   const { Messages: messages } = await queue

@@ -1,0 +1,50 @@
+services:
+  gateway:
+    build: 
+      dockerfile: docker/Dockerfile.gateway
+      context: .
+    image: gateway-server
+    ports:
+      - "3000:3000"
+    environment:
+      - AWS_ACCESS_KEY_ID=abc
+      - AWS_SECRET_ACCESS_KEY=abc
+    depends_on:
+      - mysql
+      - setupdb
+      - aws_sqs
+  processor:
+    build: 
+      dockerfile: docker/Dockerfile.processor
+      context: .
+    image: processor-server
+    environment:
+      - AWS_ACCESS_KEY_ID=abc
+      - AWS_SECRET_ACCESS_KEY=abc
+    depends_on:
+      - mysql
+      - setupdb
+      - aws_sqs
+  setupdb:
+    build: 
+      dockerfile: docker/Dockerfile.database
+      context: .
+    image: db-setup
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    ports:
+      - 13306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password
+      - MYSQL_DATABASE=email_service
+    depends_on:
+      - aws_sqs
+  aws_sqs:
+    image: roribio16/alpine-sqs
+    ports:
+      - 9324:9324
+      - 9325:9325

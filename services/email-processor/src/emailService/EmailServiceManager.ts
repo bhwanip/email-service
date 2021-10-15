@@ -7,8 +7,8 @@ export class EmailServiceManager implements IEmailService {
   private secondaryService: IEmailService;
 
   constructor() {
-    this.primaryService = new SendGridService();
-    this.secondaryService = new ElasticEmailService();
+    this.primaryService = new ElasticEmailService();
+    this.secondaryService = new SendGridService();
   }
   getProvider(): EmailProvider {
     return this.primaryService.getProvider();

@@ -1,0 +1,4 @@
+node_modules
+(services|packages)/**/node_modules
+(services|packages)/**/dist
+(services|packages)/**/test

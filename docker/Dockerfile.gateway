@@ -1,0 +1,22 @@
+FROM node
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package.json ./
+COPY yarn.lock ./
+COPY tsconfig.build.json ./
+
+COPY packages/ ./packages/
+COPY services/email-gateway ./services/email-gateway
+
+RUN npm i -g yarn --force
+RUN yarn install
+
+RUN yarn workspace @email-service/commons build
+RUN yarn workspace email-gateway build
+
+EXPOSE 3000
+
+CMD [ "yarn", "workspace", "email-gateway", "start" ]
