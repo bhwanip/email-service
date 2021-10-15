@@ -14,11 +14,13 @@
    When it receives the messages it tries to sends the message via a primary mail provider (ElasticEmail), and fallbacks to a secondary email provider (Sendgrid) in case of failures.  
 
 2. **Scalability**: The solution is highly scalable as both the gateway and processor services are stateless, which mean we can horizontally scale both the services independently.    
-AWS RDS can be scaled by adding read replicas which will allow us to distribute read queries to multiple database instances.
+AWS RDS can be scaled by adding read replicas which will allow us to distribute read queries to multiple database instances.  
+AWS SQS is a distributed scalable messaging queue.
 Adding AWS elastic cache layer further improves the system performance.
 
 1. **Availability/Reliability**: The solution is highly available, both microservice are deployed across multiple data centers/availability zones, and AWS ELB will manage the failover if needed.  
 AWS RDS promotes a replica as master in event of a failure.  
+AWS SQS is a is highly scalable.  
    
 
 2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.    
@@ -46,7 +48,8 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
 8. **Constraints/Tradeoffs**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's. However it may not be worth investing in a multi region database right at the start, as we should observe the usage pattern.   
    b) Both the services share a common database schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB. But if we have a single team working on the project a single db schema can lead to simplicity and ease of development.    
-   c) In case of failures from both email service providers there can be high delay in delivery of emails. For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.   
+   c) In case of failures from both email service providers there can be high delay in delivery of emails. For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
+   e)AWS SQS can send duplicated messages to prevent sending duplicate email we need to ensure that messaging processing logic is idempotent.  
    d) The REST api's are not secured. We can look to add JWT based security.   
 
 
