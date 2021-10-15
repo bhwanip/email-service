@@ -52,6 +52,12 @@ Responds with OK and status code 200 when healthy.
 
 Suppports only semicolon seperated emails
 
+#### Request
+* `from` is mandatory. 
+* `to` is mandatory.  
+* `to`, `cc` and `bcc` inputs should not have any white spaces.  
+* `body` is mandatory.
+
 ```
 {
     "to": <MULTIPLE_EMAILS_SEMICOLON_SEPERATED>,
@@ -78,9 +84,33 @@ Suppports only semicolon seperated emails
 }
 ```
 
-### Request
+## GET email
 
+`GET /email/:id`
 
+Responds with 404 for invalid id
+
+### Response
+
+```
+{
+  id: <EMAIL_ID>
+}
+```
+
+## GET email hisotry
+
+`GET /email/:id/hisotry`
+
+Responds with 404 for invalid id
+
+### Response
+
+```
+{
+  id: <EMAIL_ID>
+}
+```
 
 ### TODO
 
