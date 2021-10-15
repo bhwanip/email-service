@@ -30,9 +30,9 @@
     "@email-service/commons": "1.0.0",
     "aws-sdk": "^2.1006.0",
     "axios": "^0.23.0",
-    "form-data": "^4.0.0",
     "lodash.uniqby": "^4.7.0",
     "mysql2": "2.3.0",
+    "querystring": "^0.2.1",
     "sequelize": "^5.8.6",
     "uuid": "^8.3.2"
   }

@@ -1,6 +1,6 @@
+import { ElasticEmailService } from "./ElasticEmailService";
 import { EmailProvider, IEmailInput, IEmailService } from "./IEmailService";
 import { SendGridService } from "./SendGridService";
-import { SESService } from "./SESService";
 
 export class EmailServiceManager implements IEmailService {
   private primaryService: IEmailService;
@@ -8,7 +8,7 @@ export class EmailServiceManager implements IEmailService {
 
   constructor() {
     this.primaryService = new SendGridService();
-    this.secondaryService = new SESService();
+    this.secondaryService = new ElasticEmailService();
   }
   getProvider(): EmailProvider {
     return this.primaryService.getProvider();
