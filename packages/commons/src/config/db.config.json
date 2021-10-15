@@ -1,7 +1,7 @@
 {
-    "host": "mysql",
-    "port": 13306,
-    "username": "root",
+    "host": "database-2.cluster-car0mcsfvlpi.ap-southeast-2.rds.amazonaws.com",
+    "port": 3306,
+    "username": "admin",
     "password": "Password",
     "database": "email_service",
     "logging": true,
