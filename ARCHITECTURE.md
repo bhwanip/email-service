@@ -37,7 +37,7 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
    As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.
 
 6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience.  
-   Appropriate error code like 404: Not Found for invalid email id when doing GET are used in error responses
+   Appropriate error codes like 404: Not Found for invalid email id when doing GET are used in error responses
 
 7. **Constraints**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's.   
