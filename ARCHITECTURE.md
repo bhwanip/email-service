@@ -31,7 +31,8 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
 
 1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.  
    To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
-   A back up of these deleted records can be maintained on S3 if needed for compliance purposes.
+   A back up of these deleted records can be maintained on S3 if needed for compliance purposes.  
+   The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.
 
 2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
    This is an append only table which means for any change in the processing status of the email a new record for that emailId is added to this table with status as PROCESSING/SENT/FAILED.  
