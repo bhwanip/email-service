@@ -38,7 +38,7 @@ The solution can be further improved with below:
 
 * Add SWAGGER docs for REST endpoints
 * Implement a caching layer using AWS elastic cache
-* Look to add database transactions where they can help
+* Look to add database transactions where needed
   
 
 
