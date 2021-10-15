@@ -32,6 +32,15 @@ The REST api's would be available at http://localhost:3000/api
 * It uses AWS SQS for messaging and events.
 * The *email-gateway* and *email-processor* microservices containers are deployed on EC2.
 
+### TODO
+
+The solution can be further improved with below:
+
+* Add SWAGGER docs for REST endpoints
+* Implement a caching layer using AWS elastic cache
+* Look to add database transactions where they can help
+  
+
 
 
 
