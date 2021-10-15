@@ -24,12 +24,21 @@ Adding AWS elastic cache layer further improves the system performance.
 The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.
 
-1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.
+1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.  
+   To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
+   A back up of these deleted records can be maintained on S3 if needed for compliance purposes.
 
-6. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
+2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
    This is an append only table which means for any change in the processing status of the email a new record for that emailId is added to this table with status as PROCESSING/SENT/FAILED.  
    Along with the status this table also keep tracks of the email provider (Sendgrid/ElasticEmail) responsible for that status.  
    As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.
+
+7. **Constraints**:  
+   a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's.   
+   b) Both the services share a common schema which leads to some level oc coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
+   c) In case of failures from both email service providers there can be high delay in deliver of emails.  
+   d) The REST api's are not secured.   
+
 
 
 
