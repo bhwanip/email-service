@@ -1,14 +1,37 @@
-docker pull roribio16/alpine-sqs
-docker pull mysql:latest
+### Description
 
-docker run -p 13306:3306 --name mysql-docker-local -e MYSQL_ROOT_PASSWORD=Password -d mysql:latest
+This is **monorepo** with solution to build an email service which abstracts away two different email service providers. 
+* Sendgrid
+* ElasticEmail
+  
+  
+## Getting Started
 
-mysql --host=127.0.0.1 --port=13306 -u root -p
+### Dependencies
+The solution uses these frameworks and platforms.
 
-docker run --name alpine-sqs -p 9324:9324 -p 9325:9325 -d roribio16/alpine-sqs:latest
+* nodejs and yarn
+* docker and docker-compose
+* AWS Cloud
+### Running the solution
+```sh
+docker-compose build
+docker-compose up
+```
 
-EC2 setup: run using npm and docker, need SES connection
-EC2 image for quick restart
+The REST api's would be available at http://localhost:3000/api
 
-Documentation
+### Deployemnt
 
+* The solution REST endpoints are available at:
+
+   http://ec2-3-26-54-26.ap-southeast-2.compute.amazonaws.com:3000/api
+
+* It uses AWS RDS as data base.
+* It uses AWS SQS for messaging and events.
+* The *email-gateway* and *email-processor* microservices containers are deployed on EC2.
+
+
+
+
+  

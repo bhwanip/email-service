@@ -38,8 +38,8 @@ export function validate(action: string) {
         body("delimiter")
           .notEmpty()
           .withMessage("Email delimiter is required.")
-          .isIn([",", ";"])
-          .withMessage("Valid value for email delimiter are ',' and ';'"),
+          .isIn([";"])
+          .withMessage("Valid value for email delimiter is ';'"),
         body("to")
           .notEmpty()
           .withMessage("To email is required.")
