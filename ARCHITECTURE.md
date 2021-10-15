@@ -4,7 +4,7 @@
 ### Architectiure Choices
 
 
-1. **Microservices and Event based architecture**: Have split the solution in to two different services.  
+1. **Microservices and Event based architecture**: Have split the solution in to two different services, keeping in mind the single responsibility principle. 
    
    a) **Email Gateway**: This service is responsible for user facing REST api's related to emails submitted. As soon as the email is submitted via POST an email *id* is sent to user with HTTP status code 202 i.e. email has been accepted for processing.
 
@@ -22,10 +22,10 @@ AWS RDS promotes a replica as master in event of a failure.
    
 
 2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.    
-The solution is reslilient as every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
+The solution is resilient as every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
 The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.  
-For emails which goes to FAILED status a periodic job can be scheduled to retrigger there processing.
+For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
 
 1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.  
    To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
@@ -36,9 +36,12 @@ For emails which goes to FAILED status a periodic job can be scheduled to retrig
    Along with the status this table also keep tracks of the email provider (Sendgrid/ElasticEmail) responsible for that status.  
    As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.
 
+6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience.  
+   Appropriate error code like 404: Not Found for invalid email id when doing GET are used in error responses
+
 7. **Constraints**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's.   
-   b) Both the services share a common schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
+   b) Both the services share a common database schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
    c) In case of failures from both email service providers there can be high delay in deliver of emails.  
    d) The REST api's are not secured.   
 
