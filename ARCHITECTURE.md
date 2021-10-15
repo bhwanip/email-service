@@ -34,15 +34,16 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
 2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
    This is an append only table which means for any change in the processing status of the email a new record for that emailId is added to this table with status as PROCESSING/SENT/FAILED.  
    Along with the status this table also keep tracks of the email provider (Sendgrid/ElasticEmail) responsible for that status.  
-   As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.  
-   An open tracing solution like Jaeger can be used, to trace the flow of HTTP request through the microservices. 
+   As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.   
 
 6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience.  
    Appropriate error codes like 404: Not Found for invalid email id when doing GET are used in error responses.  
    The microservices can be integrated with error tracking tools like Sentry to report errors.  
-   The logs can be sent to a log indexing solution like Datadog for monitoring and quick discovery fo errors.
 
-7. **Constraints/Tradeoffs**:  
+7. **Monitoring**: The logs can be sent to a log indexing solution like Datadog for monitoring and quick discovery.  
+   A correlation id can be associated with each request and sent across to every service to monitor the request flow in the system, also an open tracing solution like Jaeger can be used, to trace the flow of HTTP request through the microservices.  
+
+8. **Constraints/Tradeoffs**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's. However it may not be worth investing in a multi region database right at the start, as we should observe the usage pattern.   
    b) Both the services share a common database schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB. But if we have a single team working on the project a single db schema can lead to simplicity and ease of development.    
    c) In case of failures from both email service providers there can be high delay in delivery of emails. For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.   
