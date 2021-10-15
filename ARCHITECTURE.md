@@ -33,7 +33,7 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
    To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
    A back up of these deleted records can be maintained on S3 if needed for compliance purposes.  
    The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.  
-   The monorepo has a `commons` package for resuable code to avoid code duplication.
+   The monorepo has a `commons` package for resuable databes related code to avoid code duplication.
 
 2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
    This is an append only table which means for any change in the processing status of the email a new record for that emailId is added to this table with status as PROCESSING/SENT/FAILED.  
