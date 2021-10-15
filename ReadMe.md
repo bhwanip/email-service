@@ -4,6 +4,8 @@ This is a **monorepo** with solution to build an email service which abstracts a
 * Sendgrid
 * ElasticEmail
   
+## Architecture Overview
+[Architecture Overview](ARCHITECTURE.md)
   
 ## Getting Started
 
