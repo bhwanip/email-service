@@ -17,6 +17,4 @@ RUN yarn install
 RUN yarn workspace @email-service/commons build
 RUN yarn workspace email-processor build
 
-EXPOSE 3000
-
 CMD [ "yarn", "workspace", "email-processor", "start" ]
