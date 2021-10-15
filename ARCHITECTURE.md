@@ -8,7 +8,7 @@
    
    a) **Email Gateway**: This service is responsible for user facing REST api's related to emails submitted. As soon as the email is submitted via POST an email *id* is sent to user with HTTP status code 202 i.e. email has been accepted for processing.
 
-   This way we avoid req/resp latency issues which a user would have faced. The service exposes additional GET endpoints for user to check for email processing status. 
+   This way we avoid req/resp latency and timout issues which a user would have faced. The service exposes additional GET endpoints for user to check for email processing status. 
 
    b) **Email Processor**: This service listens to email related events on the AWS SQS queue.  
    When it receives the messages it tries to sends the message via a primary mail provider (ElasticEmail), and fallbacks to a secondary email provider (Sendgrid) in case of failures.  
@@ -18,9 +18,11 @@ AWS RDS can be scaled by adding read replicas which will allow us to distribute 
 Adding AWS elastic cache layer further improves the system performance.
 
 1. **Availability/Reliability**: The solution is highly available, both microservice are deployed across multiple data centers/availability zones, and AWS ELB will manage the failover if needed.  
-   Every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.
+AWS RDS promotes a replica as master in event of a failure.  
+   
 
-2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.  
+2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.    
+Every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
 The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.
 
@@ -35,7 +37,7 @@ To further prevent any data corruption issues transactions can be used where nec
 
 7. **Constraints**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's.   
-   b) Both the services share a common schema which leads to some level oc coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
+   b) Both the services share a common schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
    c) In case of failures from both email service providers there can be high delay in deliver of emails.  
    d) The REST api's are not secured.   
 
