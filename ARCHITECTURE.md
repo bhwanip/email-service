@@ -42,7 +42,7 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
 7. **Constraints**:  
    a) This solution is not suitable for cross region users, as we are not using a multi regions database, so users outside the database region can face latency with REST api's.   
    b) Both the services share a common database schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB.    
-   c) In case of failures from both email service providers there can be high delay in deliver of emails.  
+   c) In case of failures from both email service providers there can be high delay in delivery of emails.  
    d) The REST api's are not secured.   
 
 
