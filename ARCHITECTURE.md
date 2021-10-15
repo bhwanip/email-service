@@ -15,7 +15,7 @@
 
 2. **Scalability**: The solution is highly scalable as both the gateway and processor services are stateless, which mean we can horizontally scale both the services independently.    
 AWS RDS can be scaled by adding read replicas which will allow us to distribute read queries to multiple database instances.  
-AWS SQS is a distributed scalable messaging queue.
+AWS SQS is a distributed scalable messaging queue.  
 Adding AWS elastic cache layer further improves the system performance.
 
 1. **Availability/Reliability**: The solution is highly available, both microservice are deployed across multiple data centers/availability zones, and AWS ELB will manage the failover if needed.  
