@@ -70,7 +70,7 @@ Suppports only semicolon seperated emails
 }
 ```
 
-### Request
+### Response
 
 ```
 {
