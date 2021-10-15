@@ -52,7 +52,7 @@ Responds with OK and status code 200 when healthy.
 
 Suppports only semicolon seperated emails
 
-#### Request
+#### Validations
 * `from` is mandatory. 
 * `to` is mandatory.  
 * `to`, `cc` and `bcc` inputs should not have any white spaces.  
@@ -77,6 +77,8 @@ Suppports only semicolon seperated emails
 ```
 
 ### Response
+
+For invalid input reponds with aggregated errors and status code 422.
 
 ```
 {
