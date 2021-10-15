@@ -15,7 +15,7 @@ Responds with OK and status code 200 when healthy.
 
 ### Request
 
-Suppports only semicolon seperated emails
+For multiple emails, Suppports only semicolon seperated emails
 
 #### Validations
 * `from` is mandatory. 
