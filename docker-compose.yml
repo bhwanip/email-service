@@ -6,9 +6,6 @@ services:
     image: gateway-server
     ports:
       - "3000:3000"
-    environment:
-      - AWS_ACCESS_KEY_ID=abc
-      - AWS_SECRET_ACCESS_KEY=abc
     depends_on:
       - aws_sqs
   processor:
@@ -16,9 +13,6 @@ services:
       dockerfile: docker/Dockerfile.processor
       context: .
     image: processor-server
-    environment:
-      - AWS_ACCESS_KEY_ID=abc
-      - AWS_SECRET_ACCESS_KEY=abc
     depends_on:
       - aws_sqs
   aws_sqs:
