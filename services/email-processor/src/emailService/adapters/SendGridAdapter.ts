@@ -21,7 +21,7 @@ export class SendGridAdapter {
         {
           to: sendGridTo,
           ...(sendGridCC?.length ? { cc: sendGridCC } : {}),
-          ...(sendGridBCC?.length ? { cc: sendGridBCC } : {}),
+          ...(sendGridBCC?.length ? { bcc: sendGridBCC } : {}),
         },
       ],
       from: sendGridFrom,
