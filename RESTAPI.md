@@ -43,7 +43,7 @@ For multiple emails, Supports only semicolon separated emails
 
 ### Response
 
-For invalid input responds with aggregated errors and status code 422.
+#### For invalid input responds with aggregated errors and status code 422.
 
 ```
 {
@@ -74,7 +74,7 @@ For invalid input responds with aggregated errors and status code 422.
 }
 ```
 
-Success Response
+#### Success Response
 
 ```
 {
