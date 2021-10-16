@@ -2,7 +2,7 @@ import { EmailProvider, IEmailInput, IEmailService } from "./IEmailService";
 import axios from "axios";
 import type { AxiosInstance } from "axios";
 import { historyTracker } from "../historyTracker";
-import { DAO } from "@email-service/commons";
+import { Models } from "@email-service/commons";
 import { ElasticEmailAdapter } from "./adapters/ElasticEmailAdapter";
 
 export class ElasticEmailService implements IEmailService {
@@ -34,7 +34,7 @@ export class ElasticEmailService implements IEmailService {
       console.log("ElasticEmailService: Send email done.");
       historyTracker.emit('SuccessEvent', {
         emailId: input.id,
-        status: DAO.EmailHistoryStatus.SUCCESS,
+        status: Models.EmailHistoryStatus.SUCCESS,
         provider: this.getProvider(),
       });
       return true;
@@ -42,7 +42,7 @@ export class ElasticEmailService implements IEmailService {
       console.log("ElasticEmailService: Send email failed.");
       historyTracker.emit('ErrorEvent', {
         emailId: input.id,
-        status: DAO.EmailHistoryStatus.ERROR,
+        status: Models.EmailHistoryStatus.ERROR,
         provider: this.getProvider(),
       });
       return false;

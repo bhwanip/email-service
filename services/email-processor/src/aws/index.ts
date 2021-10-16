@@ -14,8 +14,8 @@ const queue = new SQS({
 });
 
 (async () => {
-  const queues = await queue.listQueues().promise();
-  console.log(queues);
+  await queue.listQueues().promise();
+  console.log("🚀  email-processor server is ready.");
 })();
 
 export async function receiveMessage(processorFn: ProcessorFn) {

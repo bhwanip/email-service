@@ -9,8 +9,8 @@ const queue = new SQS({
 });
 
 (async () => {
-  const queues = await queue.listQueues().promise();
-  console.log(queues);
+  await queue.listQueues().promise();
+  console.log("🚀  email-gateway server is ready.");
 })();
 
 export async function sendMessage(data: Object | string | number) {

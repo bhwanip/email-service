@@ -1,11 +1,11 @@
-import { DAO } from "@email-service/commons";
+import { Models } from "@email-service/commons";
 import events from "events";
 import { v4 as uuidv4 } from "uuid";
 import { EmailProvider } from "../emailService/IEmailService";
 
 export interface IHistoryEvent {
   emailId: string;
-  status: DAO.EmailHistoryStatus;
+  status: Models.EmailHistoryStatus;
   provider: EmailProvider;
 }
 
@@ -13,16 +13,16 @@ export const historyTracker = new events.EventEmitter();
 
 //Subscribe for ErrorEvent
 historyTracker.on("ErrorEvent", function (data) {
-  DAO.EmailHistory.create({
+  Models.EmailHistory.create({
     id: uuidv4(),
     emailId: data.emailId,
-    status: DAO.EmailHistoryStatus.ERROR,
+    status: Models.EmailHistoryStatus.ERROR,
     provider: data.provider,
   });
 
-  DAO.Email.update(
+  Models.Email.update(
     {
-      status: DAO.EmailStatus.FAILED,
+      status: Models.EmailStatus.FAILED,
     },
     { where: { id: data.emailId } }
   );
@@ -30,16 +30,16 @@ historyTracker.on("ErrorEvent", function (data) {
 
 //Subscribe for SuccessEvent
 historyTracker.on("SuccessEvent", function (data) {
-  DAO.EmailHistory.create({
+  Models.EmailHistory.create({
     id: uuidv4(),
     emailId: data.emailId,
-    status: DAO.EmailHistoryStatus.SUCCESS,
+    status: Models.EmailHistoryStatus.SUCCESS,
     provider: data.provider,
   });
 
-  DAO.Email.update(
+  Models.Email.update(
     {
-      status: DAO.EmailStatus.SENT,
+      status: Models.EmailStatus.SENT,
     },
     { where: { id: data.emailId } }
   );
@@ -47,10 +47,10 @@ historyTracker.on("SuccessEvent", function (data) {
 
 //Subscribe for ReceivedEvent
 historyTracker.on("ReceivedEvent", function (data) {
-  DAO.EmailHistory.create({
+  Models.EmailHistory.create({
     id: uuidv4(),
     emailId: data.emailId,
-    status: DAO.EmailHistoryStatus.PROCESSING,
+    status: Models.EmailHistoryStatus.PROCESSING,
     provider: data.provider,
   });
 });

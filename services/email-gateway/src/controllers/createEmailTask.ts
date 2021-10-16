@@ -2,7 +2,7 @@ import { body, validationResult } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
 import validator from "validator";
 import { sendMessage } from "../aws";
-import { DAO } from "@email-service/commons";
+import { Models } from "@email-service/commons";
 
 const emailsListValidator = (value: string, { req }: { req: any }) => {
   const trimedValue = value?.trim();
@@ -60,7 +60,7 @@ export async function createEmailTask(req: any, res: any) {
     return;
   }
 
-  const { id } = await DAO.Email.create({
+  const { id } = await Models.Email.create({
     id: uuidv4(),
     from: "puneet11.dce@gmail.com",
     to: req.body.to.trim(),
@@ -68,7 +68,7 @@ export async function createEmailTask(req: any, res: any) {
     bcc: req.body.bcc?.trim(),
     subject: req.body.subject?.trim(),
     body: req.body.body?.trim(),
-    status: DAO.EmailStatus.ACCEPTED,
+    status: Models.EmailStatus.ACCEPTED,
     payload: req.body,
   });
 

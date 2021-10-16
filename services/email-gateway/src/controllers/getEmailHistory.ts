@@ -1,9 +1,9 @@
-import { DAO } from "@email-service/commons";
+import { Models } from "@email-service/commons";
 
 export async function getEmailHistory(req: any, res: any) {
   const { id: emailId } = req.params;
 
-  const emailHistory = await DAO.EmailHistory.findAll({
+  const emailHistory = await Models.EmailHistory.findAll({
     where: { emailId },
   });
 
