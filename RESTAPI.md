@@ -5,7 +5,7 @@ The REST API usage is described below.
 
 ### Health Check
 
-`GET /health`
+`GET /api/health`
 
 Responds with OK and status code 200 when healthy.
 
