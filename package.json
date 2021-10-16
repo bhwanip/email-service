@@ -4,11 +4,13 @@
   "description": "Email Service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "run-s test:gateway test:processor",
     "build:all": "run-s build:commons build:gateway build:processor",
     "build:gateway": "yarn workspace email-gateway build",
     "build:processor": "yarn workspace email-processor build",
     "build:commons": "yarn workspace @email-service/commons build",
+    "test:gateway": "yarn workspace email-gateway test",
+    "test:processor": "yarn workspace email-processor test",
     "clean": "rm -rf node_modules && rm -rf ./*/**/node_modules",
     "sqlz:migrate": "npx sequelize db:migrate"
   },
