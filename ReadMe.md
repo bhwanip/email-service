@@ -12,7 +12,7 @@ This is a **monorepo** with solution to build an email service which abstracts a
 ### Dependencies
 The solution uses these frameworks and platforms.
 
-* nodejs and yarn
+* Typescript, nodejs and yarn
 * docker and docker-compose
 * AWS Cloud
 ### Running the solution

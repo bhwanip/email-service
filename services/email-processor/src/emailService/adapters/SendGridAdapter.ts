@@ -1,21 +1,18 @@
 import { IEmailInput, ISendGridRequest } from "../IEmailService";
 
-const mapToSendGridList = (
-  emailsString: string,
-  delimiter: IEmailInput["delimiter"]
-) => {
-  return emailsString.split(delimiter).map((val) => ({
+const mapToSendGridList = (emailsString: string) => {
+  return emailsString.split(";").map((val) => ({
     email: val,
   }));
 };
 
 export class SendGridAdapter {
   static toSendGridRequest(input: IEmailInput): ISendGridRequest {
-    const { to, delimiter, from, cc, bcc, subject, body } = input;
+    const { to, from, cc, bcc, subject, body } = input;
 
-    const sendGridTo = mapToSendGridList(to, delimiter);
-    const sendGridCC = cc && mapToSendGridList(cc, delimiter);
-    const sendGridBCC = bcc && mapToSendGridList(bcc, delimiter);
+    const sendGridTo = mapToSendGridList(to);
+    const sendGridCC = cc && mapToSendGridList(cc);
+    const sendGridBCC = bcc && mapToSendGridList(bcc);
 
     const sendGridFrom = { email: from };
 
@@ -23,12 +20,12 @@ export class SendGridAdapter {
       personalizations: [
         {
           to: sendGridTo,
-          cc: sendGridCC,
-          bcc: sendGridBCC,
+          ...(sendGridCC?.length ? { cc: sendGridCC } : {}),
+          ...(sendGridBCC?.length ? { cc: sendGridBCC } : {}),
         },
       ],
       from: sendGridFrom,
-      subject,
+      ...(subject ? { subject } : {}),
       content: [
         {
           type: "text/plain",
