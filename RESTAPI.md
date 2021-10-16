@@ -88,7 +88,7 @@ Success Response
 
 Responds with 404 for invalid id
 
-### Response
+### Success Response
 
 ```
 {
@@ -112,7 +112,7 @@ Responds with 404 for invalid id
 
 Responds with 404 for invalid id
 
-### Response
+### Success Response
 
 ```
 [
