@@ -45,6 +45,35 @@ For multiple emails, Supports only semicolon separated emails
 
 For invalid input responds with aggregated errors and status code 422.
 
+```
+{
+    "errors": [
+        {
+            "msg": "From email is required.",
+            "param": "from",
+            "location": "body"
+        },
+        {
+            "value": "smtest00yahoo.com",
+            "msg": "Invalid emails in the list: 'smtest00yahoo.com'.",
+            "param": "to",
+            "location": "body"
+        },
+        {
+            "value": "smtest22yahoo.com",
+            "msg": "Invalid emails in the list: 'smtest22yahoo.com'.",
+            "param": "cc",
+            "location": "body"
+        },
+        {
+            "msg": "Email body is required.",
+            "param": "body",
+            "location": "body"
+        }
+    ]
+}
+```
+
 Success Response
 
 ```
