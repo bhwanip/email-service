@@ -41,9 +41,10 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
    Along with the status this table also keep tracks of the email provider (Sendgrid/ElasticEmail) responsible for that status.  
    As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.   
 
-6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience.  
+6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience, as user get to know all the errors.    
    Appropriate error codes like 404: Not Found for invalid email id when doing GET are used in error responses.  
    The microservices can be integrated with error tracking tools like Sentry to report errors.  
+   The error status of emails is also tracked in database.  
 
 7. **Monitoring**: The logs can be sent to a log indexing solution like Datadog for monitoring and quick discovery.  
    A correlation id can be associated with each request and sent across to every service to monitor the request flow in the system, also an open tracing solution like Jaeger can be used, to trace the flow of HTTP request through the microservices.  
