@@ -40,6 +40,7 @@ The REST api's would be available at http://localhost:3000/api
 ### Running Tests
 
 ```
+yarn install
 yarn test
 ```
 ### TODO
