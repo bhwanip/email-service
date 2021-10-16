@@ -39,7 +39,8 @@ For emails which goes to FAILED status a periodic job can be scheduled to trigge
 2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
    This is an append only table which means for any change in the processing status of the email a new record for that emailId is added to this table with status as PROCESSING/SENT/FAILED.  
    Along with the status this table also keep tracks of the email provider (Sendgrid/ElasticEmail) responsible for that status.  
-   As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.   
+   As part of `POST \submitEmail` the request JSON payload is also stored in the database for auditing and support purposes to see the original request which was sent by the user.  
+   The success/error resposes from external email service providers is also stored in database for auditing purposes.  
 
 6. **Error Handling**: For bad POST input request an aggregated response with all the errors is sent back to the user, this leads to better user experience, as user get to know all the errors.    
    Appropriate error codes like 404: Not Found for invalid email id when doing GET are used in error responses.  
