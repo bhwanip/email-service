@@ -7,7 +7,7 @@ app.use(express.json());
 
 initEmailRoutes(app);
 
-app.get("/health", (_, res) => {
+app.get("/api/health", (_, res) => {
     res.status(200).send('Ok');
 })
 
