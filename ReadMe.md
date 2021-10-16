@@ -46,11 +46,11 @@ yarn test
 
 The solution can be further improved with below:
 
+* Move api keys, RDS url, Queue url etc to a secure config store. 
 * Add SWAGGER docs for REST endpoints
 * Implement a caching layer using AWS elastic cache
 * Look to add database transactions where needed. 
 * Improve Test coverage. 
-* Move api keys, RDS url, Queue url etc to a secure config store. 
 * Other aspects outlined in Architecture Overview doc.
   
 
