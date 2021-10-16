@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsc",
     "start": "sleep 10 && node dist/server.js"
   },
@@ -19,6 +19,7 @@
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "4.14.2",
+    "aws-sdk-mock": "^5.4.0",
     "axios-logger": "^2.5.0",
     "eslint": "8.0.0",
     "jest": "^27.2.5",
@@ -31,6 +32,7 @@
     "@email-service/commons": "1.0.0",
     "aws-sdk": "^2.1006.0",
     "axios": "^0.23.0",
+    "jest-mock-axios": "^4.4.1",
     "lodash.uniqby": "^4.7.0",
     "mysql2": "2.3.0",
     "querystring": "^0.2.1",

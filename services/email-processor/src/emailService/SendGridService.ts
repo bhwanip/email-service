@@ -9,6 +9,7 @@ export class SendGridService implements IEmailService {
   private sendGridClient: AxiosInstance;
 
   constructor() {
+
     this.sendGridClient = axios.create({
       baseURL: "https://api.sendgrid.com",
       responseType: "json",
