@@ -6,7 +6,10 @@ This is a **monorepo** with solution to build an email service which abstracts a
   
 ## Architecture Overview
 [Architecture Overview](ARCHITECTURE.md)
-  
+
+### REST API USAGE
+[REST API](RESTAPI.md)
+
 ## Getting Started
 
 ### Dependencies
@@ -39,10 +42,6 @@ The REST api's would be available at http://localhost:3000/api
 ```
 yarn test
 ```
-
-
-### REST API USAGE
-[REST API](RESTAPI.md)
 ### TODO
 
 The solution can be further improved with below:
