@@ -11,7 +11,7 @@ Responds with OK and status code 200 when healthy.
 
 ## Submit an email
 
-`POST /submitEmail`
+`POST /api/submitEmail`
 
 ### Request
 
@@ -84,7 +84,7 @@ Success Response
 
 ## GET email
 
-`GET /email/:id`
+`GET /api/email/:id`
 
 Responds with 404 for invalid id
 
@@ -108,7 +108,7 @@ Responds with 404 for invalid id
 
 ## GET email hisotry
 
-`GET /email/:id/hisotry`
+`GET /api/email/:id/hisotry`
 
 Responds with 404 for invalid id
 
