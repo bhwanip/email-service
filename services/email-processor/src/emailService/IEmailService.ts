@@ -44,6 +44,6 @@ export interface IEmailService {
 }
 
 export enum EmailProvider {
-  AWS_SES = "AWS_SES",
+  ELASTIC_EMAIL = "ELASTIC_EMAIL",
   SENDGRID = "SENDGRID",
 }

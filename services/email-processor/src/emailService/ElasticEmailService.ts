@@ -18,24 +18,24 @@ export class ElasticEmailService implements IEmailService {
   }
 
   getProvider(): EmailProvider {
-    return EmailProvider.SENDGRID;
+    return EmailProvider.ELASTIC_EMAIL;
   }
 
   async sendEmail(input: IEmailInput): Promise<boolean> {
     console.log("ElasticEmailService: Start send email.");
     try {
       const request = ElasticEmailAdapter.toElasticEmailRequest(input);
-      await this.elasticEmailClient.post("/mailer/send", request, {
+      const { data } = await this.elasticEmailClient.post("/mailer/send", request, {
         timeout: 3000,
         headers: {
             'Content-Length': String(request.length)
         }
       });
-      console.log("ElasticEmailService: Send email done.");
+      console.log("ElasticEmailService: Send email done.", data);
       historyTracker.emit('SuccessEvent', {
         emailId: input.id,
-        status: Models.EmailHistoryStatus.SUCCESS,
         provider: this.getProvider(),
+        response: data
       });
       return true;
     } catch (err) {
@@ -44,6 +44,7 @@ export class ElasticEmailService implements IEmailService {
         emailId: input.id,
         status: Models.EmailHistoryStatus.ERROR,
         provider: this.getProvider(),
+        response: err.response,
       });
       return false;
     }

@@ -28,22 +28,28 @@ export class SendGridService implements IEmailService {
     console.log("SendGridService: Start send email.");
     try {
       const request = SendGridAdapter.toSendGridRequest(input);
-      await this.sendGridClient.post("/v3/mail/send", request, {
-        timeout: 3000,
-      });
-      console.log("SendGridService: Send email done.");
-      historyTracker.emit('SuccessEvent', {
+      const { data } = await this.sendGridClient.post(
+        "/v3/mail/send",
+        request,
+        {
+          timeout: 3000,
+        }
+      );
+      console.log("SendGridService: Send email done.", data);
+      historyTracker.emit("SuccessEvent", {
         emailId: input.id,
         status: Models.EmailHistoryStatus.SUCCESS,
         provider: this.getProvider(),
+        response: data,
       });
       return true;
     } catch (err) {
       console.log("SendGridService: Send email failed.");
-      historyTracker.emit('ErrorEvent', {
+      historyTracker.emit("ErrorEvent", {
         emailId: input.id,
         status: Models.EmailHistoryStatus.ERROR,
         provider: this.getProvider(),
+        response: err.response,
       });
       return false;
     }

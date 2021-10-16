@@ -4,7 +4,7 @@ import validator from "validator";
 import { sendMessage } from "../aws";
 import { Models } from "@email-service/commons";
 
-const emailsListValidator = (value: string, { req }: { req: any }) => {
+const emailsListValidator = (value: string, {}: { req: any }) => {
   const trimedValue = value?.trim();
   //ignore empty input
   if (!trimedValue?.length) return true;
@@ -17,7 +17,7 @@ const emailsListValidator = (value: string, { req }: { req: any }) => {
 
   const invalidEmails = new Array<string>();
 
-  trimedValue.split(req.body.delimiter).forEach((val) => {
+  trimedValue.split(";").forEach((val) => {
     if (!validator.isEmail(val.trim())) {
       invalidEmails.push(`'${val}'`);
     }
@@ -35,11 +35,11 @@ export function validate(action: string) {
   switch (action) {
     case "submitEmail": {
       return [
-        body("delimiter")
+        body("from")
           .notEmpty()
-          .withMessage("Email delimiter is required.")
-          .isIn([";"])
-          .withMessage("Valid value for email delimiter is ';'"),
+          .withMessage("From email is required.")
+          .isEmail()
+          .withMessage("Invalid from email."),
         body("to")
           .notEmpty()
           .withMessage("To email is required.")

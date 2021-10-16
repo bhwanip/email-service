@@ -27,7 +27,7 @@ export default class Email extends Model {
         bcc: DataTypes.STRING,
         cc: DataTypes.STRING,
         subject: DataTypes.STRING,
-        body: DataTypes.STRING,
+        body: DataTypes.TEXT,
         status: DataTypes.ENUM("ACCEPTED", "SENT", "FAILED"),
         payload: {
           type: DataTypes.TEXT,

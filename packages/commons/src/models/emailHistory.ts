@@ -8,8 +8,9 @@ export enum EmailHistoryStatus {
 
 export default class EmailHistory extends Model {
   public emailId: string;
-  public provider: "SENDGRID" | "AWS_SES";
+  public provider: "SENDGRID" | "ELASTIC_EMAIL";
   public status: EmailHistoryStatus;
+  public response: string;
 
   // Auto-generated
   public id: string;
@@ -18,8 +19,14 @@ export default class EmailHistory extends Model {
     this.init(
       {
         emailId: DataTypes.STRING,
-        provider: DataTypes.ENUM("SENDGRID", "AWS_SES"),
+        provider: DataTypes.ENUM("SENDGRID", "ELASTIC_EMAIL"),
         status: DataTypes.ENUM("PROCESSING", "SUCCESS", "ERROR"),
+        response: {
+          type: DataTypes.TEXT,
+          set: function (value) {
+            this.setDataValue("response", JSON.stringify(value));
+          },
+        },
       },
       {
         sequelize: sequelize,

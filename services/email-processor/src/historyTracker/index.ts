@@ -18,6 +18,7 @@ historyTracker.on("ErrorEvent", function (data) {
     emailId: data.emailId,
     status: Models.EmailHistoryStatus.ERROR,
     provider: data.provider,
+    response: data.response,
   });
 
   Models.Email.update(
@@ -35,6 +36,7 @@ historyTracker.on("SuccessEvent", function (data) {
     emailId: data.emailId,
     status: Models.EmailHistoryStatus.SUCCESS,
     provider: data.provider,
+    response: data.response,
   });
 
   Models.Email.update(

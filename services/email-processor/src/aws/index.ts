@@ -1,9 +1,16 @@
+import { Models } from "@email-service/commons";
 import { SQS } from "aws-sdk";
 import { Message } from "aws-sdk/clients/sqs";
 import uniqBy from "lodash.uniqby";
 import { IEmailInput } from "../emailService/IEmailService";
 
 type ProcessorFn = (input: IEmailInput) => Promise<boolean>;
+
+async function isMessageBeingProcessed(id: string): Promise<boolean> {
+  const { isProcessing } = await Models.Email.findByPk(id);
+
+  return isProcessing;
+}
 
 const queue = new SQS({
   apiVersion: "2012-11-05",
@@ -34,6 +41,12 @@ export async function receiveMessage(processorFn: ProcessorFn) {
     uniqBy(messages, "MessageId").forEach(async (msg: Message) => {
       console.log("PROCESSOR===>", msg);
 
+      const messageObj = JSON.parse(msg.Body);
+
+      const isProcessing = await isMessageBeingProcessed(messageObj.id);
+
+      if (isProcessing) return;
+
       await queue
         .changeMessageVisibility({
           ...params,
@@ -41,8 +54,6 @@ export async function receiveMessage(processorFn: ProcessorFn) {
           VisibilityTimeout: 20,
         })
         .promise();
-
-      const messageObj = JSON.parse(msg.Body);
 
       const isSuccess = await processorFn(messageObj);
 

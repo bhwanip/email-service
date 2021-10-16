@@ -17,7 +17,7 @@ module.exports = {
             },
             provider: {
                 allowNull: true,
-                type: Sequelize.ENUM('SENDGRID', 'AWS_SES'),
+                type: Sequelize.ENUM('SENDGRID', 'ELASTIC_EMAIL'),
             },
             // Timestamps
             createdAt: Sequelize.DATE,

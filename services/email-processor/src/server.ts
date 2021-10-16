@@ -6,14 +6,30 @@ import { Models } from "@email-service/commons";
 
 const emailService = new EmailServiceManager();
 
-async function processor(message: IEmailInput) {
+async function processor(message: IEmailInput): Promise<boolean> {
   
+  Models.Email.update(
+    {
+      isProcessing: true,
+    },
+    { where: { id: message.id } }
+  );
+
   historyTracker.emit("ReceivedEvent", {
     emailId: message.id,
     status: Models.EmailHistoryStatus.PROCESSING,
   });
   
-  return await emailService.sendEmail(message);
+  const isSuccess =  await emailService.sendEmail(message);
+
+  Models.Email.update(
+    {
+      isProcessing: false,
+    },
+    { where: { id: message.id } }
+  );
+
+  return isSuccess;
 }
 
 async function startProcessingMessages() {
