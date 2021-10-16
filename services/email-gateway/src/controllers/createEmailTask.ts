@@ -1,8 +1,8 @@
 import { body, validationResult } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
 import validator from "validator";
-import { sendMessage } from "../aws";
 import { Models } from "@email-service/commons";
+import { sendMessage } from "../aws";
 
 const emailsListValidator = (value: string, {}: { req: any }) => {
   const trimedValue = value?.trim();
