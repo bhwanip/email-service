@@ -9,8 +9,6 @@ const emailsListValidator = (value: string, {}: { req: any }) => {
   //ignore empty input
   if (!trimedValue?.length) return true;
 
-  console.log(trimedValue, new RegExp(/^\s+$/).test(value));
-
   if (/\s/.test(trimedValue)) {
     throw new Error(`White space not allowed in emails list.`);
   }
@@ -31,7 +29,6 @@ const emailsListValidator = (value: string, {}: { req: any }) => {
 };
 
 export function validate(action: string) {
-  console.log("validate");
   switch (action) {
     case "submitEmail": {
       return [
