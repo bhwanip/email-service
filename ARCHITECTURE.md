@@ -21,7 +21,7 @@ Adding AWS elastic cache layer further improves the system performance.
 
 1. **Availability/Reliability**: The solution is highly available, both microservice are deployed across multiple data centers/availability zones, and AWS ELB will manage the failover if needed.  
 AWS RDS promotes a replica as master in event of a failure.  
-AWS SQS is a is highly scalable.  
+AWS SQS is highly scalable messaging platform.  
    
 
 2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.    
