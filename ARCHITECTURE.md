@@ -8,7 +8,8 @@
    
    a) **Email Gateway**: This service is responsible for user facing REST api's related to emails submitted. As soon as the email is submitted via POST an email *id* is sent to user with HTTP status code 202 i.e. email has been accepted for processing.
 
-   This way we avoid req/resp latency and timout issues which a user would have faced. The service exposes additional GET endpoints for user to check for email processing status. 
+   This way we avoid req/resp latency and timout issues which a user would have faced. The service exposes additional GET endpoints for user to check for email processing status.  
+   The processing is delegated via AWS SQS events to email processor microservice.  
 
    b) **Email Processor**: This service listens to email related events on the AWS SQS queue.  
    When it receives the messages it tries to sends the message via a primary mail provider (ElasticEmail), and fallbacks to a secondary email provider (Sendgrid) in case of failures.  
