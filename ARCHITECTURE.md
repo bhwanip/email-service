@@ -24,13 +24,14 @@ AWS RDS promotes a replica as master in event of a failure.
 AWS SQS is highly scalable messaging platform.  
    
 
-2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.    
-The solution is resilient as every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
-The database is setup with replicas to avoid any data loss due to master failure.   
+2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.  The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.  
 For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
 To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
-A back up of these deleted records can be maintained on S3 if needed for compliance purposes. 
+A back up of these deleted records can be maintained on S3 if needed for compliance purposes.  
+
+3. **Resiliency**: The solution is resilient as every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
+Each of the microservice should be able to scale horizontaly as the traffic increases.
 
 1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.   
    The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.  
