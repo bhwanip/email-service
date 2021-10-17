@@ -16,6 +16,7 @@ This is a **monorepo** with solution to build an email service which abstracts a
 The solution uses these frameworks and platforms.
 
 * Typescript, nodejs and yarn
+* Express
 * docker and docker-compose
 * AWS Cloud
 ### Running the solution
