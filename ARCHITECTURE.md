@@ -24,7 +24,7 @@ AWS RDS promotes a replica as master in event of a failure.
 AWS SQS is highly scalable messaging platform.  
    
 
-2. **Data loss/Durability/Resiliency**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.  The database is setup with replicas to avoid any data loss due to master failure.   
+2. **Data loss/Durability**: The system ensures that valid data is persisted. As part of `POST /submitEmail`  the data is validated and then persisted in the database. The processing for sending of email happens after this step, this ensures that any email processing related errors does not cause any data loss.  The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.  
 For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
 To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
