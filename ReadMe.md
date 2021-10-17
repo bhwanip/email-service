@@ -33,7 +33,7 @@ The REST api's would be available at http://localhost:3000/api
 
 * The solution REST endpoints are available at:
 
-   http://ec2-3-26-54-26.ap-southeast-2.compute.amazonaws.com:3000/api
+   http://ec2-3-25-137-103.ap-southeast-2.compute.amazonaws.com:3000/api/health
 
 * There are two microservices `email-gateway` and `email-processor`
 * It uses AWS RDS as data base.
