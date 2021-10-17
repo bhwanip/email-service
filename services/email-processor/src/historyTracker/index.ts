@@ -24,6 +24,7 @@ historyTracker.on("ErrorEvent", function (data) {
   Models.Email.update(
     {
       status: Models.EmailStatus.FAILED,
+      isProcessing: false,
     },
     { where: { id: data.emailId } }
   );
@@ -42,6 +43,7 @@ historyTracker.on("SuccessEvent", function (data) {
   Models.Email.update(
     {
       status: Models.EmailStatus.SENT,
+      isProcessing: false,
     },
     { where: { id: data.emailId } }
   );
