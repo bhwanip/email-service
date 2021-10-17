@@ -54,13 +54,13 @@ For multiple emails, Supports only semicolon separated emails
             "location": "body"
         },
         {
-            "value": "smtest00yahoo.com",
+            "value": "smtest33yahoo.com",
             "msg": "Invalid emails in the list: 'smtest00yahoo.com'.",
             "param": "to",
             "location": "body"
         },
         {
-            "value": "smtest22yahoo.com",
+            "value": "smtest55yahoo.com",
             "msg": "Invalid emails in the list: 'smtest22yahoo.com'.",
             "param": "cc",
             "location": "body"
