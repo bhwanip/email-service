@@ -29,10 +29,10 @@ The solution is resilient as every interaction with the external email provider 
 The database is setup with replicas to avoid any data loss due to master failure.   
 To further prevent any data corruption issues transactions can be used where necessary.  
 For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
+To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
+A back up of these deleted records can be maintained on S3 if needed for compliance purposes. 
 
-1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.  
-   To clean up old records from the database a Lambda may be scheduled say to remove 6 months old records.  
-   A back up of these deleted records can be maintained on S3 if needed for compliance purposes.  
+1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.   
    The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.  
    The monorepo has a `commons` package for resuable databes related code to avoid code duplication.  
    The microservices are containerized using docker which makes it easy to run them locally and in multiple cloud providers
