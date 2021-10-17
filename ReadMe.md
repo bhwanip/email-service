@@ -3,6 +3,8 @@
 This is a **monorepo** with solution to build an email service which abstracts away two different email service providers. 
 * Sendgrid
 * ElasticEmail
+
+It utilizes advanced NodeJS consepts like `EventEmitter` and `async/await`
   
 ## Architecture Overview
 [Architecture Overview](ARCHITECTURE.md)
