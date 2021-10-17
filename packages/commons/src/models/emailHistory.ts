@@ -12,7 +12,6 @@ export default class EmailHistory extends Model {
   public status: EmailHistoryStatus;
   public response: string;
 
-  // Auto-generated
   public id: string;
 
   public static initialize(sequelize: Sequelize) {
@@ -30,7 +29,6 @@ export default class EmailHistory extends Model {
       },
       {
         sequelize: sequelize,
-        // timestamps: false,
         name: {
           singular: "EmailHistory",
           plural: "EmailsHistory",

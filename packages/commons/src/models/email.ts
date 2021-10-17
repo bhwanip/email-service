@@ -16,7 +16,6 @@ export default class Email extends Model {
   public status: EmailStatus;
   public payload: string;
 
-  // Auto-generated
   public id: string;
 
   public static initialize(sequelize: Sequelize) {
@@ -38,7 +37,6 @@ export default class Email extends Model {
       },
       {
         sequelize: sequelize,
-        // timestamps: false,
         name: {
           singular: "Email",
           plural: "Emails",
