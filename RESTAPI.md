@@ -34,7 +34,7 @@ For multiple emails, Supports only semicolon separated emails
 }
 
 {
-    "to": "smtest00@yahoo.com;smtest22@yahoo.com",
+    "to": "smtest33@yahoo.com;smtest44@yahoo.com",
     "from": "puneet11.dce@gmail.com",
     "body": "Test Body",
     "subject": "Test Subject"
@@ -94,9 +94,9 @@ Responds with 404 for invalid id
 {
     "id": "cd2c923b-4344-44b7-ae50-8f6d4fb32b45",
     "from": "puneet11.dce@gmail.com",
-    "to": "smtest00@yahoo.com",
+    "to": "smtest44@yahoo.com",
     "bcc": null,
-    "cc": "smtest22@yahoo.com",
+    "cc": "smtest33@yahoo.com",
     "subject": "Test Subject",
     "body": "Test Body",
     "status": "SENT",
