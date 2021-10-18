@@ -33,7 +33,7 @@ A back up of these deleted records can be maintained on S3 if needed for complia
 
 3. **Resiliency**: The solution is resilient as every interaction with the external email provider has a timeout of 3 seconds, this is to avoid performance degradation in case of downtime of external email services.  
 The `EmailServiceManager` falls back to the secondary email service provider if the primary fails to send email.    
-Each of the microservice should be able to scale horizontaly as the traffic increases.
+Each of the microservice should be able to scale horizontally as the traffic increases.
 
 1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.   
    The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.  
