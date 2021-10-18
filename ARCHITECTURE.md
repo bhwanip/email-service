@@ -37,7 +37,7 @@ Each of the microservice should be able to scale horizontally as the traffic inc
 
 1. **Maintainability**: Both the services *email-gateway* and *email-processor* can be deployed and scaled independently.   
    The code internally uses an interface `IEmailService` so that email providers can be replaced easily without much effort as it would only need implementation of this interface.  
-   The monorepo has a `commons` package for resuable databes related code to avoid code duplication.  
+   The monorepo has a `commons` package for resusable databases related code to avoid code duplication.  
    The microservices are containerized using docker which makes it easy to run them locally and in multiple cloud providers
 
 2. **Auditing**: A complete audit trail of each email processing is being maintained in the ``EmailHistores`` table.   
