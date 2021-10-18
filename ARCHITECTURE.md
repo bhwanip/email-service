@@ -58,7 +58,7 @@ Each of the microservice should be able to scale horizontaly as the traffic incr
 8. **Constraints/Tradeoffs**:  
    a) Both the services share a common database schema which leads to some level of coupling between the two. In case of two isolated teams managing the services, there are chances of a breaking change being made to the DB. But if we have a single team working on the project a single db schema can lead to simplicity and ease of development.    
    b) In case of failures from both email service providers there can be high delay in delivery of emails. For emails which goes to FAILED status a periodic job can be scheduled to trigger there processing.  
-   c) AWS SQS deal letter queue can also be used to keep track of failed emails.  
+   c) AWS SQS dead letter queue can also be used to keep track of failed emails.  
    c)AWS SQS can send duplicated messages to prevent sending duplicate email we need to ensure that messaging processing logic is idempotent.  
    d) The REST api's are not secured. We can look to add JWT based security.  
    e) For multiple emails like in cc list, the system currently only supports semicolon seperated emails, this is to ensure that system has a stable and consitent behaviour, more seperators like comma can be added when needed.  
