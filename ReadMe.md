@@ -55,6 +55,7 @@ The solution can be further improved with below:
 * Add SWAGGER docs for REST endpoints
 * Implement a caching layer using AWS elastic cache
 * Look to add database transactions where needed. 
+* Create a database DAO layer to avoid tight coupling with database.
 * Improve Test coverage, Logging
 * Set up CI/CD pipelines
 * Other aspects outlined in Architecture Overview doc.
