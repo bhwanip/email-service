@@ -56,6 +56,7 @@ The solution can be further improved with below:
 * Implement a caching layer using AWS elastic cache
 * Look to add database transactions where needed. 
 * Improve Test coverage, Logging
+* Set up CI/CD pipelines
 * Other aspects outlined in Architecture Overview doc.
   
 
