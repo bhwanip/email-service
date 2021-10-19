@@ -52,7 +52,8 @@ The solution can be further improved with below:
 
 * Move api keys, RDS url, Queue url etc to a secure config store. 
 * Setup HTTPS.  
-* Add SWAGGER docs for REST endpoints
+* Add SWAGGER docs for REST endpoints.  
+* Improve email service fallback logic with Cricuit Breaker pattern.  
 * Implement a caching layer using AWS elastic cache
 * Look to add database transactions where needed. 
 * Create a database DAO layer to avoid tight coupling with database.
